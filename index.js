@@ -39,12 +39,26 @@ function Airplane(name) {
           + It should return a string with `name` and `age`. Example: "Mary, 50"
   */
   
- function Person() {
-    
-  }
- 
- 
+ function Person(name, age) {
+    this.name = name,
+    this.age = age,
+    this.stomach = [];
 
+    Person.prototype.eat = function eat(item) {
+      if (this.stomach.length < 10){
+        return this.stomach.push(item);
+      }
+    }
+    this.stomach = [];
+    Person.prototype.poop =function poop() {
+      return this.stomach = [];
+    }
+    Person.prototype.toString =function PersontoString(){
+      return `${this.name}, ${this.age}`
+    }
+  }
+  const mary = new Person("Mary", 50)
+// console.log(mary)
   
   
   
@@ -63,10 +77,15 @@ function Airplane(name) {
           + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
   */
   
- function Car() {
-    
+ function Car(model, milesPerGallon) {
+    this.model = model,
+    this.milesPerGallon = milesPerGallon,
+    this.tank = 0
+    this.odometer = 0
+    Car.prototype.fill = function fill(gallons){
+      return this.tank = this.tank + gallons
+    }
   }
-  
   
   /*
     TASK 3
@@ -75,18 +94,26 @@ function Airplane(name) {
       - Besides the methods on Person.prototype, babies have the ability to `.play()`:
           + Should return a string "Playing with x", x being the favorite toy.
   */
- function Baby() {
-   
+ function Baby(name, age, favoriteToy) {
+    Person.call(this, favoriteToy);
+    this.name = name,
+    this.age = age,
+    this.favoriteToy = favoriteToy,
+    Baby.prototype.play = function play(){
+      return `Playing with ${this.favoriteToy}`
+    }
+    Baby.prototype = Object.create(Person.prototype)
+
   }
  
-  
+
   /* 
     TASK 4
     In your own words explain the four principles for the "this" keyword below:
-    1. 
-    2. 
-    3. 
-    4. 
+    1. Global Binding is essactially all of javascripts uses and methods, ect. its what makes up Javascript
+    2. Implicit Binding refers to what is readily available or defined within the immediate scope your wokring in
+    3. Explict Binding Refers to pulling in an outside scope and using its data within your scope you working in
+    4. New Keyword Binding is making a peice of data and or elements that can be used and dropped directly into a already existing scope so long as 'this' is present with values
   */
   
   
